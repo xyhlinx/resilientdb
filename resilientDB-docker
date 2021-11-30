@@ -76,28 +76,28 @@ if [ -f "docker-compose.yml" ]; then
     printf "${GREEN}Successfully stopped${NC}\n"
 fi
 
-echo "Creating docker compose file ..."
-echo "version: '3'" >docker-compose.yml
-echo "services:" >>docker-compose.yml
+#echo "Creating docker compose file ..."
+#echo "version: '3'" >docker-compose.yml
+#echo "services:" >>docker-compose.yml
 
-t="    "
-for i in $(seq 1 $replicas); do
-    echo -e "${t}s${i}:" >>docker-compose.yml
-    echo -e "${t}${t}image: resilientdb/res-machine" >>docker-compose.yml
-    echo -e "${t}${t}container_name: s${i}" >>docker-compose.yml
-    echo -e "${t}${t}volumes:" >>docker-compose.yml
-    echo -e "${t}${t}${t}- ./:/home/expo/resilientdb" >>docker-compose.yml
-    echo -e "${t}${t}restart: always" >>docker-compose.yml
-done
-for i in $(seq 1 $clients); do
-    echo -e "${t}c${i}:" >>docker-compose.yml
-    echo -e "${t}${t}image: resilientdb/res-machine" >>docker-compose.yml
-    echo -e "${t}${t}container_name: c${i}" >>docker-compose.yml
-    echo -e "${t}${t}volumes:" >>docker-compose.yml
-    echo -e "${t}${t}${t}- ./:/home/expo/resilientdb" >>docker-compose.yml
-    echo -e "${t}${t}restart: always" >>docker-compose.yml
-done
-printf "${GREEN}Docker compose file created --> docker-compose.yml${NC}\n"
+#t="    "
+#for i in $(seq 1 $replicas); do
+#    echo -e "${t}s${i}:" >>docker-compose.yml
+#    echo -e "${t}${t}image: resilientdb/res-machine" >>docker-compose.yml
+#    echo -e "${t}${t}container_name: s${i}" >>docker-compose.yml
+#    echo -e "${t}${t}volumes:" >>docker-compose.yml
+#    echo -e "${t}${t}${t}- ./:/home/expo/resilientdb" >>docker-compose.yml
+#    echo -e "${t}${t}restart: always" >>docker-compose.yml
+#done
+#for i in $(seq 1 $clients); do
+#    echo -e "${t}c${i}:" >>docker-compose.yml
+#    echo -e "${t}${t}image: resilientdb/res-machine" >>docker-compose.yml
+#    echo -e "${t}${t}container_name: c${i}" >>docker-compose.yml
+#    echo -e "${t}${t}volumes:" >>docker-compose.yml
+#    echo -e "${t}${t}${t}- ./:/home/expo/resilientdb" >>docker-compose.yml
+#    echo -e "${t}${t}restart: always" >>docker-compose.yml
+#done
+#printf "${GREEN}Docker compose file created --> docker-compose.yml${NC}\n"
 
 echo "Starting the containers..."
 $(docker-compose up -d)
